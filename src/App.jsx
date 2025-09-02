@@ -29,7 +29,11 @@ const App = () => {
       </form>
       <div>debug: {newName}</div>
       <h2>Numbers</h2>
-      ...
+      <ul>
+        {persons.map((person, i) => (
+          <li key={i}>{person.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
