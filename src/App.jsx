@@ -18,9 +18,10 @@ const App = () => {
     if (nameAlreadyExists) {
       alert(`${newName} is already in the phonebook`);
     } else {
-      const personObject = { name: newName };
+      const personObject = { name: newName, number: newNumber };
       setPersons(persons.concat(personObject));
       setNewName("");
+      setNewNumber("");
     }
   };
 
@@ -47,7 +48,9 @@ const App = () => {
       <h2>Numbers</h2>
       <ul>
         {persons.map((person) => (
-          <li key={person.name}>{person.name}</li>
+          <li key={person.name}>
+            {person.name} {person.number}
+          </li>
         ))}
       </ul>
     </div>
