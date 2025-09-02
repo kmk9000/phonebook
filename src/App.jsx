@@ -30,8 +30,8 @@ const App = () => {
       <div>debug: {newName}</div>
       <h2>Numbers</h2>
       <ul>
-        {persons.map((person, i) => (
-          <li key={i}>{person.name}</li>
+        {persons.map((person) => (
+          <li key={person.name}>{person.name}</li>
         ))}
       </ul>
     </div>
