@@ -4,7 +4,8 @@ const Persons = ({ personsToShow }) => {
     <ul>
       {personsToShow.map((person) => (
         <li key={person.name}>
-          {person.name} {person.number}
+          {person.name} {person.number}{" "}
+          <button onClick={() => console.log("button clicked")}>delete</button>
         </li>
       ))}
     </ul>
