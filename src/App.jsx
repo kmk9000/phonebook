@@ -49,7 +49,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <div>
-        search: <input value={filter} onChange={handleFilterChange} />
+        search for name: <input value={filter} onChange={handleFilterChange} />
       </div>
       <form onSubmit={addPerson}>
         <div>
@@ -62,18 +62,9 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
-      <div>debug: {newName}</div>
-      <h2>Search results</h2>
-      <ul>
-        {personsToShow.map((person) => (
-          <li key={person.name}>
-            {person.name} {person.number}
-          </li>
-        ))}
-      </ul>
       <h2>Numbers</h2>
       <ul>
-        {persons.map((person) => (
+        {personsToShow.map((person) => (
           <li key={person.name}>
             {person.name} {person.number}
           </li>
