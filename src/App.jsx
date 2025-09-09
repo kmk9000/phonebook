@@ -3,12 +3,15 @@ import axios from "axios";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("some error happened...");
 
   useEffect(() => {
     console.log("Fetching data from server...");
@@ -29,7 +32,10 @@ const App = () => {
     const nameAlreadyExists = persons.some((person) => person.name === newName);
 
     if (nameAlreadyExists) {
-      alert(`${newName} is already in the phonebook`);
+      setErrorMessage(`"${newName}" is already in the database server.`);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 6000);
     } else {
       const personObject = { name: newName, number: newNumber };
       axios
@@ -72,6 +78,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={errorMessage} />
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <PersonForm
         addPerson={addPerson}
