@@ -76,6 +76,10 @@ const App = () => {
         })
         .catch((error) => {
           console.error("Failed to delete:", error);
+          setNotification({
+            message: `Information of "${name}" has already been removed from server.`,
+            type: "error",
+          });
         });
     }
   };
