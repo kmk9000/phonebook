@@ -12,7 +12,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     console.log("Fetching data from server...");
@@ -33,10 +33,13 @@ const App = () => {
     const nameAlreadyExists = persons.some((person) => person.name === newName);
 
     if (nameAlreadyExists) {
-      setErrorMessage(`"${newName}" is already in the database server.`);
+      setNotification({
+        message: `"${newName}" is already in the database server.`,
+        type: "error",
+      });
       setTimeout(() => {
-        setErrorMessage(null);
-      }, 6000);
+        setNotification(null);
+      }, 5000);
     } else {
       const personObject = { name: newName, number: newNumber };
       axios
@@ -45,6 +48,7 @@ const App = () => {
           setPersons(persons.concat(response.data));
           setNewName("");
           setNewNumber("");
+          setNotification({ message: `Added ${newName}.`, type: "success" });
         });
     }
   };
@@ -79,7 +83,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={errorMessage} />
+      <Notification notification={notification} />
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       <PersonForm
         addPerson={addPerson}
